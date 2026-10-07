@@ -1,0 +1,39 @@
+# MDM System Configuration
+server:
+  host: "0.0.0.0"
+  port: 8000
+  tls_cert: "./certs/cert.pem"
+  tls_key:  "./certs/key.pem"
+  reload: true
+
+ai:
+  ollama_host: "http://localhost:11434"
+  model: "mistral"          # Options: mistral, llama3, llama3:8b, phi3
+  temperature: 0.1
+  max_tokens: 1000
+  timeout: 60
+
+database:
+  url: "sqlite:///./data/mdm.db"
+
+security:
+  enrollment_token: "CHANGE_ME_IN_PRODUCTION"
+  jwt_expire_hours: 8
+  block_rooted_devices: true
+  require_screen_lock: true
+  min_battery_threshold: 10
+
+fleet:
+  heartbeat_interval: 30    # seconds
+  device_timeout: 90        # seconds offline before marked inactive
+  max_devices: 100
+
+dashboard:
+  cli_refresh_interval: 5   # seconds
+  web_port: 8501
+  theme: "dark"
+
+alerts:
+  email_enabled: false
+  slack_webhook: ""
+  min_severity: "MEDIUM"    # LOW / MEDIUM / HIGH / CRITICAL
